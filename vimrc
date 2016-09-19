@@ -24,6 +24,7 @@ Plugin 'tpope/vim-fugitive' " Git integration
 Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'} " Powerline
 Plugin 'nvie/vim-flake8'
 Plugin 'jiangmiao/Auto-Pairs'
+Plugin 'dyng/ctrlsf.vim'
 Bundle 'Valloric/YouCompleteMe'
 
 
@@ -93,7 +94,24 @@ set nu
 " Some magic for clipboard buffer
 set clipboard=unnamed
 
-" Tabs switching
-map <C><PageUp> :tabp<cr>
-map <C><PageDown> :tabn<cr>
+" Tabs manipulation
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+nnoremap <C-w>     :tabclose<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+inoremap <C-w>     <Esc>:tabclose<CR>i
 
+" Mappings to move limes
+nnoremap <C-S-Down> :m .+1<CR>==
+nnoremap <C-S-Up> :m .-2<CR>==
+inoremap <C-S-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-S-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-S-Down> :m '>+1<CR>gv=gv
+vnoremap <C-S-Up> :m '<-2<CR>gv=gv
+
+" Highlight if line longer than (80)
+highlight ColorColumn ctermbg=gray
+set colorcolumn=80
